@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Live Quiz</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>📝 Live Quiz</h1>
+
+<h3 id="timer">Time Left: 20 sec</h3>
+
+<h2 id="question">
+What does HTML stand for?
+</h2>
+
+<div class="options">
+
+<label><input type="radio" name="answer"> Hyper Text Markup Language</label><br><br>
+
+<label><input type="radio" name="answer"> High Text Machine Language</label><br><br>
+
+<label><input type="radio" name="answer"> Hyper Tool Multi Language</label><br><br>
+
+<label><input type="radio" name="answer"> Home Tool Markup Language</label><br><br>
+
+</div>
+
+<br>
+
+<button onclick="nextQuestion()">Next Question</button>
+
+</div>
+
+<script>
+
+let time = 20;
+
+let countdown = setInterval(function(){
+
+document.getElementById("timer").innerHTML="Time Left: "+time+" sec";
+
+time--;
+
+if(time<0){
+
+clearInterval(countdown);
+
+window.location.href="result.html";
+
+}
+
+},1000);
