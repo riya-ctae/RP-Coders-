@@ -14,30 +14,15 @@
 
     <h3>Join Live Quiz</h3>
 
-    <input type="text" id="studentName" placeholder="Enter Your Name"><br><br>
+    <input type="text" id="studentName" placeholder="Enter Your Name" required><br><br>
 
-    <input type="text" id="quizCode" placeholder="Enter Quiz Code"><br><br>
+    <input type="text" id="quizCode" placeholder="Enter Quiz Code" required><br><br>
 
     <button onclick="joinQuiz()">Join Quiz</button>
 
 </div>
 
-<script>
-function joinQuiz() {
-
-    let name = document.getElementById("studentName").value;
-    let code = document.getElementById("quizCode").value;
-
-    if(name=="" || code==""){
-        alert("Please enter your name and quiz code.");
-    }
-    else{
-        alert("Welcome " + name + "! Joining Quiz...");
-        window.location.href="quiz.html";
-    }
-
-}
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
