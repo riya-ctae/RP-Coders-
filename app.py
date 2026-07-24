@@ -97,5 +97,16 @@ def add_quiz():
 
     return jsonify({"message":"Quiz Added Successfully"})
 
+@app.route("/get_quiz", methods=["GET"])
+def get_quiz():
+    conn = connect_db()
+    cur = conn.cursor()
+
+    cur.execute("""SELECT id, question, option1, option2, option3, option4 FROM quiz ORDER BY id""")
+    quiz = cur.fetchone()
+    conn.close()
+    quizzes = [dict(row) for row in rows]
+    return jsonify(quizzes)
+
 if __name__ == "__main__":
     app.run(debug=True)

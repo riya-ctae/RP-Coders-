@@ -1,64 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Live Quiz</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Quiz</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
 <div class="container">
 
-<h1>📝 Live Quiz</h1>
+    <h1>📝 Live Quiz</h1>
 
-<h3 id="timer">Time Left: 20 sec</h3>
+    <h3 id="timer">Time Left: 20 sec</h3>
 
-<h2 id="question">
-What does HTML stand for?
-</h2>
+    <h2 id="question">Loading Question...</h2>
 
-<div class="options">
+    <div class="options">
 
-<label><input type="radio" name="answer" value="A"> Hyper Text Markup Language</label><br><br>
+        <label>
+            <input type="radio" name="answer">
+        </label>
 
-<label><input type="radio" name="answer" value="B"> High Text Machine Language</label><br><br>
+        <label>
+            <input type="radio" name="answer">
+        </label>
 
-<label><input type="radio" name="answer" value="C"> Hyper Tool Multi Language</label><br><br>
+        <label>
+            <input type="radio" name="answer">
+        </label>
 
-<label><input type="radio" name="answer" value="D"> Home Tool Markup Language</label><br><br>
+        <label>
+            <input type="radio" name="answer">
+        </label>
+
+    </div>
+
+    <br>
+
+    <button onclick="nextQuestion()">Next Question</button>
 
 </div>
 
-<br>
-
-<button onclick="nextQuestion()">Submit Quiz</button>
-
-</div>
-
-<script>
-
-let time = 20;
-
-let countdown = setInterval(function(){
-
-document.getElementById("timer").innerHTML="Time Left: "+time+" sec";
-
-time--;
-
-if(time < 0){
-clearInterval(countdown);
-window.location.href="result.html";
-}
-
-},1000);
-
-function nextQuestion(){
-window.location.href="result.html";
-}
-
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
