@@ -1,7 +1,9 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import sqlite3
 
 app = Flask(__name__)
+CORS(app)
 
 def connect_db():
     conn = sqlite3.connect("quiz.db")
@@ -47,6 +49,53 @@ def users():
     conn.close()
 
     return jsonify([dict(row) for row in rows])
+
+@app.route("/login", methods=["POST"])
+def login():
+    data = request.json
+
+    conn = connect_db()
+    cur = conn.cursor()
+
+    cur.execute(
+        "SELECT * FROM users WHERE email=? AND password=?",
+        (data["email"], data["password"])
+    )
+
+    user = cur.fetchone()
+    conn.close()
+
+    if user:
+        return jsonify({"message":"Login Successful"})
+    else:
+        return jsonify({"message":"Invalid Email or Password"})
+
+
+@app.route("/add_quiz", methods=["POST"])
+def add_quiz():
+
+    data = request.json
+
+    conn = connect_db()
+    cur = conn.cursor()
+
+    cur.execute(
+        """INSERT INTO quiz(question,option1,option2,option3,option4,answer)
+        VALUES(?,?,?,?,?,?)""",
+        (
+            data["question"],
+            data["option1"],
+            data["option2"],
+            data["option3"],
+            data["option4"],
+            data["answer"]
+        )
+    )
+
+    conn.commit()
+    conn.close()
+
+    return jsonify({"message":"Quiz Added Successfully"})
 
 if __name__ == "__main__":
     app.run(debug=True)
