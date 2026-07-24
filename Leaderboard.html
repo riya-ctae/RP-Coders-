@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leaderboard</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<div class="container">
+
+<h2>🏆 Quiz Leaderboard</h2>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Rank</th>
+<th>Name</th>
+<th>Score</th>
+<th>Percentage</th>
+
+</tr>
+
+</thead>
+
+<tbody id="leaderboardTable">
+
+</tbody>
+
+</table>
+
+<button class="student" onclick="window.location.href='index.html'">
+Back to Home
+</button>
+
+</div>
+
+<script>
+
+let data = JSON.parse(localStorage.getItem("leaderboard")) || [];
+
+data.sort((a,b)=>b.score-a.score);
+
+let table="";
+
+data.forEach((student,index)=>{
+
+table += `
+<tr>
+
+<td>${index+1}</td>
+
+<td>${student.name}</td>
+
+<td>${student.score}/${student.total}</td>
+
+<td>${student.percentage}%</td>
+
+</tr>
+`;
+
+});
+
+document.getElementById("leaderboardTable").innerHTML = table;
+
+</script>
+
+</body>
+</html>
