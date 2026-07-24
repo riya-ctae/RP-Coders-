@@ -109,27 +109,15 @@ async function saveQuiz(){
 // ---------------- Student Join ----------------
 
 function joinQuiz(){
-
     let name=document.getElementById("studentName").value;
-
-
     if(name===""){
-
         alert("Enter Name");
         return;
-
     }
-
-
     localStorage.setItem("studentName",name);
-
     window.location.href="quiz.html";
-
 }
-
-
-
-// ---------------- Load Questions ----------------
+// ---------------- Load Questions ----------------  
 
 async function loadQuiz(){
 
