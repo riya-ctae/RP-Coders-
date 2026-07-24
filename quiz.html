@@ -1,86 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quiz</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
 
-<link rel="stylesheet" href="style.css">
-
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body onload="loadQuiz()">
 
 <div class="container">
 
-<h2 id="quizTitle">Quiz Title</h2>
+    <h2 id="quizTitle">Quiz Title</h2>
 
-<div id="timer">Time Left: 20 sec</div>
+    <div id="timer">Time Left: 20 sec</div>
 
-<div class="progress">
+    <div class="progress">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
 
-<div class="progress-bar" id="progressBar"></div>
+    <h3 id="question"></h3>
 
-</div>
+    <button id="option1" class="option" onclick="selectAnswer(this.innerHTML)">
+        Option 1
+    </button>
 
-<h3 id="question"></h3>
+    <button id="option2" class="option" onclick="selectAnswer(this.innerHTML)">
+        Option 2
+    </button>
 
-<button id="option1" class="option"
-onclick="selectAnswer(this.innerHTML)">
-Option 1
-</button>
+    <button id="option3" class="option" onclick="selectAnswer(this.innerHTML)">
+        Option 3
+    </button>
 
-<button id="option2" class="option"
-onclick="selectAnswer(this.innerHTML)">
-Option 2
-</button>
+    <button id="option4" class="option" onclick="selectAnswer(this.innerHTML)">
+        Option 4
+    </button>
 
-<button id="option3" class="option"
-onclick="selectAnswer(this.innerHTML)">
-Option 3
-</button>
-
-<button id="option4" class="option"
-onclick="selectAnswer(this.innerHTML)">
-Option 4
-</button>
-
-<button class="teacher"
-onclick="submitQuiz()">
-Submit Quiz
-</button>
+    <button class="teacher" onclick="submitQuiz()">
+        Submit Quiz
+    </button>
 
 </div>
 
 <script type="module" src="script.js"></script>
 
 <script>
-
 let timeLeft = 20;
 
-let timer = setInterval(function(){
+let timer = setInterval(function () {
 
-document.getElementById("timer").innerHTML =
-"Time Left : " + timeLeft + " sec";
+    document.getElementById("timer").innerHTML =
+        "Time Left : " + timeLeft + " sec";
 
-let progress =
-((20-timeLeft)/20)*100;
+    let progress = ((20 - timeLeft) / 20) * 100;
 
-document.getElementById("progressBar").style.width =
-progress + "%";
+    document.getElementById("progressBar").style.width =
+        progress + "%";
 
-timeLeft--;
+    timeLeft--;
 
-if(timeLeft<0){
+    if (timeLeft < 0) {
+        clearInterval(timer);
+        submitQuiz();
+    }
 
-clearInterval(timer);
-
-submitQuiz();
-
-}
-
-},1000);
-
+}, 1000);
 </script>
 
 </body>

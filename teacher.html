@@ -1,76 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Teacher Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard</title>
 
-<link rel="stylesheet" href="style.css">
-
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 <div class="container">
 
-<h2>👩‍🏫 Teacher Dashboard</h2>
+    <h2>👩‍🏫 Teacher Dashboard</h2>
 
-<input
-type="text"
-id="quizTitle"
-placeholder="Enter Quiz Title">
+    <input type="text" id="quizTitle" placeholder="Enter Quiz Title">
 
-<input
-type="text"
-id="question"
-placeholder="Enter Question">
+    <input type="text" id="question" placeholder="Enter Question">
 
-<input
-type="text"
-id="option1"
-placeholder="Option 1">
+    <input type="text" id="option1" placeholder="Option 1">
 
-<input
-type="text"
-id="option2"
-placeholder="Option 2">
+    <input type="text" id="option2" placeholder="Option 2">
 
-<input
-type="text"
-id="option3"
-placeholder="Option 3">
+    <input type="text" id="option3" placeholder="Option 3">
 
-<input
-type="text"
-id="option4"
-placeholder="Option 4">
+    <input type="text" id="option4" placeholder="Option 4">
 
-<select id="answer">
+    <select id="answer">
+        <option value="">Select Correct Answer</option>
+        <option value="Option 1">Option 1</option>
+        <option value="Option 2">Option 2</option>
+        <option value="Option 3">Option 3</option>
+        <option value="Option 4">Option 4</option>
+    </select>
 
-<option value="">Select Correct Answer</option>
+    <br><br>
 
-<option value="Option 1">Option 1</option>
+    <button class="teacher" onclick="createQuiz()">
+        Create Quiz
+    </button>
 
-<option value="Option 2">Option 2</option>
+    <button class="student" onclick="window.location.href='leaderboard.html'">
+        View Leaderboard
+    </button>
 
-<option value="Option 3">Option 3</option>
-
-<option value="Option 4">Option 4</option>
-
-</select>
-
-<button class="teacher" onclick="createQuiz()">
-Create Quiz
-</button>
-
-<button class="student"
-onclick="window.location.href='leaderboard.html'">
-View Leaderboard
-</button>
-
-<button class="danger"
-onclick="logout()">
-Logout
-</button>
+    <button class="danger" onclick="logout()">
+        Logout
+    </button>
 
 </div>
 

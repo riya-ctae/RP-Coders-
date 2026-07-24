@@ -1,42 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Dashboard</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login</title>
+
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 <div class="container">
 
-    <h1>🎓 Student Dashboard</h1>
+<h2>Login</h2>
 
-    <h3>Join Live Quiz</h3>
+<input type="email" id="email" placeholder="Enter Email">
 
-    <input type="text" id="studentName" placeholder="Enter Your Name"><br><br>
+<input type="password" id="password" placeholder="Enter Password">
 
-    <input type="text" id="quizCode" placeholder="Enter Quiz Code"><br><br>
+<button class="student" onclick="loginUser()">
+Login
+</button>
 
-    <button onclick="joinQuiz()">Join Quiz</button>
+<p style="text-align:center; margin-top:15px;">
+Don't have an account?
+<a href="register.html">Register</a>
+</p>
 
 </div>
 
-<script>
-function joinQuiz() {
+<script type="module">
 
-    let name = document.getElementById("studentName").value;
-    let code = document.getElementById("quizCode").value;
+import { auth } from "./firebase.js";
 
-    if(name=="" || code==""){
-        alert("Please enter your name and quiz code.");
-    }
-    else{
-        alert("Welcome " + name + "! Joining Quiz...");
-        window.location.href="quiz.html";
-    }
+import {
+signInWithEmailAndPassword
+}
+from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+
+window.loginUser = async function(){
+
+let email=document.getElementById("email").value.trim();
+
+let password=document.getElementById("password").value.trim();
+
+if(email=="" || password==""){
+
+alert("Please fill all fields");
+
+return;
 
 }
+
+try{
+
+const userCredential=await signInWithEmailAndPassword(
+auth,
+email,
+password
+);
+
+alert("Login Successful");
+
+localStorage.setItem("userEmail",email);
+
+window.location.href="index.html";
+
+}
+
+catch(error){
+
+alert(error.message);
+
+}
+
+}
+
 </script>
 
 </body>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<div class="container">
+
+<h2>🛠 Admin Dashboard</h2>
+
+<div class="card">
+
+<h3>Total Registered Users</h3>
+<p id="totalUsers">0</p>
+
+</div>
+
+<div class="card">
+
+<h3>Total Quizzes Created</h3>
+<p id="totalQuizzes">0</p>
+
+</div>
+
+<div class="card">
+
+<h3>Total Quiz Attempts</h3>
+<p id="totalAttempts">0</p>
+
+</div>
+
+<div class="card">
+
+<h3>Leaderboard Entries</h3>
+<p id="leaderboardCount">0</p>
+
+</div>
+
+<button class="teacher" onclick="viewLeaderboard()">
+View Leaderboard
+</button>
+
+<button class="student" onclick="viewProfile()">
+Profile
+</button>
+
+<button class="danger" onclick="resetLeaderboard()">
+Reset Leaderboard
+</button>
+
+<button class="danger" onclick="deleteUsers()">
+Delete All Users
+</button>
+
+<button class="danger" onclick="deleteQuizzes()">
+Delete All Quizzes
+</button>
+
+<button onclick="goHome()">
+Home
+</button>
+
+</div>
+
+<script>
+
+// Total Users
+
+let users = JSON.parse(localStorage.getItem("users")) || [];
+
+document.getElementById("totalUsers").innerHTML = users.length;
+
+
+// Total Quizzes
+
+let totalQuiz = 0;
+
+for(let i=0;i<localStorage.length;i++){
+
+let key = localStorage.key(i);
+
+if(!isNaN(key)){
+
+totalQuiz++;
+
+}
+
+}
+
+document.getElementById("totalQuizzes").innerHTML = totalQuiz;
+
+
+// Leaderboard
+
+let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
+
+document.getElementById("leaderboardCount").innerHTML = leaderboard.length;
+
+
+// Attempts
+
+document.getElementById("totalAttempts").innerHTML = leaderboard.length;
+
+
+// Buttons
+
+function viewLeaderboard(){
+
+window.location.href="leaderboard.html";
+
+}
+
+function viewProfile(){
+
+window.location.href="profile.html";
+
+}
+
+function goHome(){
+
+window.location.href="index.html";
+
+}
+
+function resetLeaderboard(){
+
+if(confirm("Reset Leaderboard?")){
+
+localStorage.removeItem("leaderboard");
+
+alert("Leaderboard Reset Successfully");
+
+location.reload();
+
+}
+
+}
+
+function deleteUsers(){
+
+if(confirm("Delete All Users?")){
+
+localStorage.removeItem("users");
+
+alert("Users Deleted");
+
+location.reload();
+
+}
+
+}
+
+function deleteQuizzes(){
+
+if(confirm("Delete All Quizzes?")){
+
+for(let i=localStorage.length-1;i>=0;i--){
+
+let key=localStorage.key(i);
+
+if(!isNaN(key)){
+
+localStorage.removeItem(key);
+
+}
+
+}
+
+alert("All Quizzes Deleted");
+
+location.reload();
+
+}
+
+}
+
+</script>
+
+</body>
+</html>

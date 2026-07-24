@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Profile</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<div class="container">
+
+<h2>👤 My Profile</h2>
+
+<div class="profile-card">
+
+<p><b>Name:</b> <span id="name"></span></p>
+
+<p><b>Role:</b> <span id="role"></span></p>
+
+<p><b>Quizzes Attempted:</b> <span id="attempt"></span></p>
+
+<p><b>Highest Score:</b> <span id="highest"></span></p>
+
+<p><b>Average Percentage:</b> <span id="average"></span>%</p>
+
+<button class="student" onclick="window.location.href='leaderboard.html'">
+Leaderboard
+</button>
+
+<button class="teacher" onclick="window.location.href='index.html'">
+Home
+</button>
+
+<button class="danger" onclick="logout()">
+Logout
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+let student = localStorage.getItem("studentName") || "Guest";
+
+document.getElementById("name").innerHTML = student;
+
+document.getElementById("role").innerHTML = "Student";
+
+let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
+
+let myResult = leaderboard.filter(function(item){
+
+    return item.name === student;
+
+});
+
+document.getElementById("attempt").innerHTML = myResult.length;
+
+if(myResult.length > 0){
+
+    let highest = Math.max(...myResult.map(item => item.score));
+
+    document.getElementById("highest").innerHTML = highest;
+
+    let total = 0;
+
+    myResult.forEach(function(item){
+
+        total += Number(item.percentage);
+
+    });
+
+    document.getElementById("average").innerHTML =
+    (total / myResult.length).toFixed(2);
+
+}else{
+
+    document.getElementById("highest").innerHTML = 0;
+
+    document.getElementById("average").innerHTML = 0;
+
+}
+
+function logout(){
+
+localStorage.removeItem("studentName");
+
+localStorage.removeItem("currentQuizCode");
+
+window.location.href="index.html";
+
+}
+
+</script>
+
+</body>
+</html>
