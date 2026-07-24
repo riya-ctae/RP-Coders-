@@ -1,65 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Result</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz Result</title>
+
+<link rel="stylesheet" href="style.css">
+
 </head>
 
-<body>
+<body onload="loadResult()">
 
-<div class="container">
+<div class="container result-card">
 
-    <h1>🎉 Quiz Completed!</h1>
+<h1>🎉 Quiz Completed</h1>
 
-    <h2>Your Score</h2>
+<h2 id="studentName"></h2>
 
-    <h1 id="score">0 / 0</h1>
+<p><b>Score:</b> <span id="score"></span> / <span id="total"></span></p>
 
+<p><b>Percentage:</b> <span id="percentage"></span>%</p>
 
-    <h3>🏆 Leaderboard</h3>
+<button class="teacher"
+onclick="window.location.href='leaderboard.html'">
+View Leaderboard
+</button>
 
+<button class="student"
+onclick="window.location.href='profile.html'">
+My Profile
+</button>
 
-    <table border="1" cellpadding="10"
-    style="margin:auto; border-collapse:collapse;">
+<button class="success"
+onclick="window.location.href='student.html'">
+Attempt Another Quiz
+</button>
 
-        <thead>
-
-            <tr>
-
-                <th>Rank</th>
-                <th>Name</th>
-                <th>Score</th>
-
-            </tr>
-
-        </thead>
-
-
-        <tbody id="leaderboard">
-
-
-        </tbody>
-
-
-    </table>
-
-
-    <br><br>
-
-
-    <button onclick="window.location.href='login.html'">
-
-        Go to Home
-
-    </button>
-
+<button class="danger"
+onclick="logout()">
+Logout
+</button>
 
 </div>
 
-
-<script src="script.js"></script>
+<script type="module" src="script.js"></script>
 
 </body>
 </html>
