@@ -78,6 +78,8 @@ def add_quiz():
 
     conn = connect_db()
     cur = conn.cursor()
+    cur.execute("DELETE FROM results") 
+    conn.commit()
 
     cur.execute(
         """INSERT INTO quiz(question,option1,option2,option3,option4,answer)
@@ -102,11 +104,55 @@ def get_quiz():
     conn = connect_db()
     cur = conn.cursor()
 
-    cur.execute("""SELECT id, question, option1, option2, option3, option4 FROM quiz ORDER BY id""")
-    quiz = cur.fetchone()
+    cur.execute("SELECT * FROM quiz")
+    rows = cur.fetchall()
     conn.close()
-    quizzes = [dict(row) for row in rows]
+    quizzes = []
+    for row in rows:
+        quizzes.append(dict(row))
     return jsonify(quizzes)
+
+@app.route("/save_result", methods=["POST"])
+def save_result():
+
+    data = request.json
+
+    conn = connect_db()
+    cur = conn.cursor()
+
+    cur.execute(
+        """
+        INSERT INTO results(student_name, score)
+        VALUES(?,?)
+        """,
+        (
+            data["student_name"],
+            data["score"]
+        )
+    )
+
+    conn.commit()
+    conn.close()
+
+    return jsonify({"message": "Result Saved Successfully"})
+
+@app.route("/leaderboard", methods=["GET"])
+def leaderboard():
+
+    conn = connect_db()
+    cur = conn.cursor()
+
+    cur.execute("""
+        SELECT student_name, score
+        FROM results
+        ORDER BY score DESC
+    """)
+
+    rows = cur.fetchall()
+
+    conn.close()
+
+    return jsonify([dict(row) for row in rows])
 
 if __name__ == "__main__":
     app.run(debug=True)
