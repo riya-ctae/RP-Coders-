@@ -6,6 +6,7 @@
     <title>Quiz Result</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 <div class="container">
@@ -14,44 +15,51 @@
 
     <h2>Your Score</h2>
 
-    <h1 style="color:green;">8 / 10</h1>
+    <h1 id="score">0 / 0</h1>
+
 
     <h3>🏆 Leaderboard</h3>
 
-    <table border="1" cellpadding="10" style="margin:auto; border-collapse:collapse;">
-        <tr>
-            <th>Rank</th>
-            <th>Name</th>
-            <th>Score</th>
-        </tr>
 
-        <tr>
-            <td>1</td>
-            <td>Priya</td>
-            <td>10</td>
-        </tr>
+    <table border="1" cellpadding="10"
+    style="margin:auto; border-collapse:collapse;">
 
-        <tr>
-            <td>2</td>
-            <td>Riya</td>
-            <td>9</td>
-        </tr>
+        <thead>
 
-        <tr>
-            <td>3</td>
-            <td>You</td>
-            <td>8</td>
-        </tr>
+            <tr>
+
+                <th>Rank</th>
+                <th>Name</th>
+                <th>Score</th>
+
+            </tr>
+
+        </thead>
+
+
+        <tbody id="leaderboard">
+
+
+        </tbody>
+
 
     </table>
 
+
     <br><br>
 
-    <button onclick="window.location.href='index.html'">
+
+    <button onclick="window.location.href='login.html'">
+
         Go to Home
+
     </button>
 
+
 </div>
+
+
+<script src="script.js"></script>
 
 </body>
 </html>
