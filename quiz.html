@@ -3,56 +3,85 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Live Quiz</title>
+<title>Quiz</title>
+
 <link rel="stylesheet" href="style.css">
+
 </head>
 
-<body>
+<body onload="loadQuiz()">
 
 <div class="container">
 
-<h1>📝 Live Quiz</h1>
+<h2 id="quizTitle">Quiz Title</h2>
 
-<h3 id="timer">Time Left: 20 sec</h3>
+<div id="timer">Time Left: 20 sec</div>
 
-<h2 id="question">
-What does HTML stand for?
-</h2>
+<div class="progress">
 
-<div class="options">
-
-<label><input type="radio" name="answer"> Hyper Text Markup Language</label><br><br>
-
-<label><input type="radio" name="answer"> High Text Machine Language</label><br><br>
-
-<label><input type="radio" name="answer"> Hyper Tool Multi Language</label><br><br>
-
-<label><input type="radio" name="answer"> Home Tool Markup Language</label><br><br>
+<div class="progress-bar" id="progressBar"></div>
 
 </div>
 
-<br>
+<h3 id="question"></h3>
 
-<button onclick="nextQuestion()">Next Question</button>
+<button id="option1" class="option"
+onclick="selectAnswer(this.innerHTML)">
+Option 1
+</button>
+
+<button id="option2" class="option"
+onclick="selectAnswer(this.innerHTML)">
+Option 2
+</button>
+
+<button id="option3" class="option"
+onclick="selectAnswer(this.innerHTML)">
+Option 3
+</button>
+
+<button id="option4" class="option"
+onclick="selectAnswer(this.innerHTML)">
+Option 4
+</button>
+
+<button class="teacher"
+onclick="submitQuiz()">
+Submit Quiz
+</button>
 
 </div>
+
+<script type="module" src="script.js"></script>
 
 <script>
 
-let time = 20;
+let timeLeft = 20;
 
-let countdown = setInterval(function(){
+let timer = setInterval(function(){
 
-document.getElementById("timer").innerHTML="Time Left: "+time+" sec";
+document.getElementById("timer").innerHTML =
+"Time Left : " + timeLeft + " sec";
 
-time--;
+let progress =
+((20-timeLeft)/20)*100;
 
-if(time<0){
+document.getElementById("progressBar").style.width =
+progress + "%";
 
-clearInterval(countdown);
+timeLeft--;
 
-window.location.href="result.html";
+if(timeLeft<0){
+
+clearInterval(timer);
+
+submitQuiz();
 
 }
 
 },1000);
+
+</script>
+
+</body>
+</html>
